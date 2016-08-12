@@ -7,7 +7,7 @@ import javax.persistence.Persistence;
 public class PersistenceUtil {
 	
 	public static EntityManagerFactory emf = Persistence
-			.createEntityManagerFactory("ControlLab");
+			.createEntityManagerFactory("MVN-ControlLab-WEB");
 	
 	public EntityManager getEntityManager(){
 		return emf.createEntityManager();

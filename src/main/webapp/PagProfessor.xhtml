@@ -7,16 +7,16 @@
 	  xmlns:ui="http://java.sun.com/jsf/facelets">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
+<title>Cadastro de professores</title>
 </head>
 <body>
 	<h:form>
 		<fieldset>
 			<h:panelGrid columns="2">
 				<h:outputLabel value="Nome: " for="nome" />
-				<h:inputText id="nome" value="#{tbProfessorBean.tbProfessor.nome}"/>
+				<h:inputText id="nome" value="#{professorBean.professor.nome}"/>
 				
-				<h:button type="submit" value="submit"/>
+				<h:commandButton value="Salvar" action="#{professorBean.gravarProfessor}"/>
 			</h:panelGrid>
 		</fieldset>
 	</h:form>
