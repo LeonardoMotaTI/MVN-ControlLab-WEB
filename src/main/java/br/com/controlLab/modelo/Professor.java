@@ -34,30 +34,41 @@ public class Professor
 	
 	@Column(name="NOME", length=100)
 	private String nome;
+	
 	@Column(name="SOBRE_NOME", length=100)
 	private String sobreNome;
+	
 	@Column(name="MATRICULA", length=100)
 	private String matricula;
+	
 	@Column(name="EMAIL",length=100)
 	private String email;
+	
 	@Column(name="FL_ATIVO")
 	@Enumerated(EnumType.ORDINAL)
 	private EnumFlAtivo ativo;
+	
 	@Column(length=100)
 	private String telefone;
+	
 	@Column(length=100)
 	private String observacao;
+	
 	@Column(length=100)
 	private String Login;
+	
 	@Column(length=100)
 	private String senha;
+	
 	@Column(length=100)
 	private String foto;
-		
+	
 	@Temporal(TemporalType.DATE)
 	private Calendar dtInsert = Calendar.getInstance();
+	
 	@Temporal(TemporalType.DATE)
 	private Calendar dtUpdate = Calendar.getInstance();
+	
 	@Temporal(TemporalType.DATE)
 	private Calendar dtAtivacao = Calendar.getInstance();
 	

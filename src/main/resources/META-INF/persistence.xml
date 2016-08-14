@@ -10,6 +10,8 @@
 		
  		<class>br.com.controlLab.modelo.Professor</class>
 		<class>br.com.controlLab.modelo.Agendamento</class>		
+		<class>br.com.controlLab.modelo.Disciplina</class>
+		<class>br.com.controlLab.modelo.Horario</class>
 		 
  		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
