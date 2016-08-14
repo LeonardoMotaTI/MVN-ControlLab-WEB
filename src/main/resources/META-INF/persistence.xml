@@ -8,8 +8,8 @@
 
    		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		
- 		<class>br.com.controlLab.modelo.TbProfessor</class>
-<!-- 		<class>br.com.caelum.livraria.modelo.Autor</class>		 -->
+ 		<class>br.com.controlLab.modelo.Professor</class>
+		<class>br.com.controlLab.modelo.Agendamento</class>		
 		 
  		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />

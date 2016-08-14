@@ -2,28 +2,56 @@ package br.com.controlLab.modelo;
 
 import java.util.Calendar;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import br.com.controlLab.enums.EnumFlAtivo;
+
+
+@NamedQueries({
+	@NamedQuery(name=Professor.FIND_ALL, query="select p from Professor p")
+})
 @Entity
-public class TbProfessor 
+@Table(name="TB_PROFESSOR")
+public class Professor 
 {
+	
+	public static final String FIND_ALL = "Professor.findAll";
 	@Id
-	@GeneratedValue	
+	@GeneratedValue(strategy=GenerationType.IDENTITY)	
+	@Column(name="ID")
 	private Integer id;
 	
+	@Column(name="NOME", length=100)
 	private String nome;
+	@Column(name="SOBRE_NOME", length=100)
 	private String sobreNome;
+	@Column(name="MATRICULA", length=100)
 	private String matricula;
+	@Column(name="EMAIL",length=100)
 	private String email;
-	private int ativo;
+	@Column(name="FL_ATIVO")
+	@Enumerated(EnumType.ORDINAL)
+	private EnumFlAtivo ativo;
+	@Column(length=100)
 	private String telefone;
+	@Column(length=100)
 	private String observacao;
+	@Column(length=100)
 	private String Login;
+	@Column(length=100)
 	private String senha;
+	@Column(length=100)
 	private String foto;
 		
 	@Temporal(TemporalType.DATE)
@@ -33,7 +61,26 @@ public class TbProfessor
 	@Temporal(TemporalType.DATE)
 	private Calendar dtAtivacao = Calendar.getInstance();
 	
-	public TbProfessor(){		
+	public Professor(){		
+		super();
+	}
+	
+	public Professor(String nome, String sobreNome, String matric, String email, EnumFlAtivo ativo, 
+			String fone, String obs, String usu, String senha, String foto, Calendar dtInsert, Calendar dtUpdat, Calendar dtAtiva){
+		super();
+		this.ativo = ativo;
+		this.matricula = matric;
+		this.nome = nome;
+		this.sobreNome = sobreNome;
+		this.dtAtivacao = dtAtiva;
+		this.dtInsert = dtInsert;
+		this.dtUpdate = dtUpdat;
+		this.email = email;
+		this.foto = foto;
+		this.Login = usu;
+		this.observacao = obs;
+		this.senha = senha;
+		this.telefone = fone;
 	}
 	
 	public Integer getId() {
@@ -66,12 +113,15 @@ public class TbProfessor
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getAtivo() {
+	
+	public EnumFlAtivo getAtivo() {
 		return ativo;
 	}
-	public void setAtivo(int ativo) {
+
+	public void setAtivo(EnumFlAtivo ativo) {
 		this.ativo = ativo;
 	}
+
 	public String getTelefone() {
 		return telefone;
 	}
@@ -119,8 +169,6 @@ public class TbProfessor
 	}
 	public void setDtAtivacao(Calendar dtAtivacao) {
 		this.dtAtivacao = dtAtivacao;
-	}
-	
-	
+	}	
 
 }

@@ -4,24 +4,24 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import br.com.controlLab.dao.DaoGeral;
-import br.com.controlLab.modelo.TbProfessor;
+import br.com.controlLab.modelo.Professor;
 
 @ManagedBean(name="professorBean")
 @ViewScoped
-public class TbProfessorBean 
+public class ProfessorBean 
 {
-	private TbProfessor professor = new TbProfessor();
+	private Professor professor = new Professor();
 	
-	public TbProfessor getProfessor(){
+	public Professor getProfessor(){
 		return professor;
 	}
 	
 	public void gravarProfessor(){
 		System.out.println("gravando professor!");
 		
-		new DaoGeral<TbProfessor>(TbProfessor.class).adicionar(this.professor);
+		new DaoGeral<Professor>(Professor.class).adicionar(this.professor);
 		
-		this.professor = new TbProfessor();
+		this.professor = new Professor();
 		
 	}
 }
