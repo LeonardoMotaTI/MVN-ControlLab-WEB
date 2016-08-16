@@ -1,43 +1,81 @@
 package br.com.controlLab.dao;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.PersistenceContext;
+//import javax.transaction.Transactional;
 
+import org.hibernate.Session;
 
-public class DaoGeral<T> {
+//@Transactional
+public abstract class DaoGeral<T> implements DaoInterface<T>{	
+
+	private final String MSG_SUCESS_SAVE = "Registro salvo com sucesso!";
+	private final String MSG_SUCESS_DEL  = "Registro excluido!";
+	private final String MSG_SUCESS_UPD  = "Registro atualizado com sucesso!";
+	private final String MSG_ERRO_SAVE	 = "Erro ao tentar salvar o registro.";
+	private final String MSG_ERRO_DEL	 = "Erro ao tentar excluir o registro.";
+	private final String MSG_NOT_FOUND	 = "Registro nÃ£o encontrado.";
 	
-	private final Class<T> classe;
-	
-	public DaoGeral(Class<T> classe){
-		this.classe = classe;
+	@PersistenceContext
+	protected EntityManager manager;
+	private Session session;
+//	private final Class<T> classe;
+//	
+	public DaoGeral(){
+		//this.classe = classe;
 	}
 	
-	public void adicionar(T t)
-	{
-		//obtem a entity manager
-		EntityManager em = new PersistenceUtil().getEntityManager();
-		//inicia a transação
-		em.getTransaction().begin();
-		//persiste os dados
-		em.persist(t);
-		//commit
-		em.getTransaction().commit();
-		//fecha a transação
-		em.close();			
+	public EntityManager getManager() {
+		return manager;
 	}
+
+	public void setManager(EntityManager manager) {
+		this.manager = manager;
+	}
+
+	public Session getSession() {
+		return session;
+	}
+
+	public void setSession(Session session) {
+		this.session = session;
+	}
+
+	public String getMSG_SUCESS_SAVE() {
+		return MSG_SUCESS_SAVE;
+	}
+
+	public String getMSG_SUCESS_DEL() {
+		return MSG_SUCESS_DEL;
+	}
+
+	public String getMSG_SUCESS_UPD() {
+		return MSG_SUCESS_UPD;
+	}
+
+	public String getMSG_ERRO_SAVE() {
+		return MSG_ERRO_SAVE;
+	}
+
+	public String getMSG_ERRO_DEL() {
+		return MSG_ERRO_DEL;
+	}
+
+	public String getMSG_NOT_FOUND() {
+		return MSG_NOT_FOUND;
+	}	
+
+	public abstract T find(long codigo) throws Exception;
 	
-	public List<T> listaTodos()
-	{
-		EntityManager em = new PersistenceUtil().getEntityManager();
-		CriteriaQuery<T> query = em.getCriteriaBuilder().createQuery(classe);
-		query.select(query.from(classe));
-		
-		List<T> lista = em.createQuery(query).getResultList();
-		
-		em.close();
-		return lista;
+	public String delete (long codigo) throws Exception{
+		try{
+			T entity = this.find(codigo);
+			if(entity!=null)
+				manager.remove(entity);
+			return "true";
+		}catch(Exception e){
+			return "";
+		}
 	}
 
 }

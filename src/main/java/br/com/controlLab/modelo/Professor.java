@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,13 +25,14 @@ import br.com.controlLab.enums.EnumFlAtivo;
 @Entity
 @Table(name="TB_PROFESSOR")
 public class Professor 
-{
-	
+{	
 	public static final String FIND_ALL = "Professor.findAll";
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)	
-	@Column(name="ID")
-	private Integer id;
+	//@SequenceGenerator(name="pk_sequence", sequenceName="pk_id_sequence")
+	//@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="pk_sequence")	
+	@GeneratedValue(strategy=GenerationType.AUTO)	
+	@Column(name="ID", unique=true, nullable=false)
+	private Integer id = 1;
 	
 	@Column(name="NOME", length=100)
 	private String nome;
@@ -44,8 +46,7 @@ public class Professor
 	@Column(name="EMAIL",length=100)
 	private String email;
 	
-	@Column(name="FL_ATIVO")
-	@Enumerated(EnumType.ORDINAL)
+	@Column(name="FL_ATIVO")	
 	private EnumFlAtivo ativo;
 	
 	@Column(length=100)
@@ -97,9 +98,9 @@ public class Professor
 	public Integer getId() {
 		return id;
 	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
+//	public void setId(Integer id) {
+//		this.id = id;
+//	}
 	public String getNome() {
 		return nome;
 	}
@@ -124,7 +125,7 @@ public class Professor
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+	@Enumerated(EnumType.ORDINAL)
 	public EnumFlAtivo getAtivo() {
 		return ativo;
 	}
