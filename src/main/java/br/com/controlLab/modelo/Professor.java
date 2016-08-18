@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,19 +19,23 @@ import br.com.controlLab.enums.EnumFlAtivo;
 
 
 @NamedQueries({
-	@NamedQuery(name=Professor.FIND_ALL, query="select p from Professor p")
+	@NamedQuery(name=Professor.FIND_ALL, query="select p from Professor p"),
+	@NamedQuery(name=Professor.MATRICULA, query="select p from Professor p where matricula = :matricula")
 })
 @Entity
 @Table(name="TB_PROFESSOR")
 public class Professor 
 {	
 	public static final String FIND_ALL = "Professor.findAll";
-	@Id
+	public static final String MATRICULA = "Professor.findMat";
+	public static final String PARAM_MATRICULA = "matricula";
+
 	//@SequenceGenerator(name="pk_sequence", sequenceName="pk_id_sequence")
 	//@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="pk_sequence")	
-	@GeneratedValue(strategy=GenerationType.AUTO)	
-	@Column(name="ID", unique=true, nullable=false)
-	private Integer id = 1;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)	
+	@Column(name="ID")
+	private Integer id;
 	
 	@Column(name="NOME", length=100)
 	private String nome;

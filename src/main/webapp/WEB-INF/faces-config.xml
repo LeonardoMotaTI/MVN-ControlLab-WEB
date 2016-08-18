@@ -4,4 +4,18 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
 	version="2.2">
 
+	<navigation-rule>
+		<from-view-id>/index.xhtml</from-view-id>  <!--página atual -->
+		<navigation-case> <!--Caso 1 -->
+			<from-outcome>sucesso</from-outcome>   <!--String="sucesso" -->
+			<to-view-id>/PagProfessor.xhtml</to-view-id>     <!--próxima página -->
+			<redirect />
+		</navigation-case>
+		<navigation-case> <!--Caso 2 -->
+			<from-outcome>falha</from-outcome> <!--String="falha" -->
+			<to-view-id>/erro.xhtml</to-view-id> <!--próxima página -->
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
 </faces-config>

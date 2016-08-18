@@ -7,10 +7,10 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>ControlLab-WEB</title>
+<title>"#{beanApplication.appName}"</title>
 </head>
 <body>
-	<h1>Login do sistema</h1>
+	<h1>Login do Sistema</h1>
 	<h:form>
 		<fieldset> 
 			<h:panelGrid columns="2">
@@ -20,7 +20,7 @@
 				<h:outputLabel value="Senha:" />
 				<h:inputText id="senha" />
 				
-				<h:commandButton value="Entrar" action="PagProfessor"/>
+				<h:commandButton value="Entrar" action="#{beanApplication.loginOK}"/>
 			</h:panelGrid> 
 		</fieldset>
 	</h:form>

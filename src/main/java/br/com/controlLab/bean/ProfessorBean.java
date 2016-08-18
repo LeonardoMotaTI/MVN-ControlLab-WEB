@@ -48,6 +48,8 @@ public class ProfessorBean extends ApplicationControllerMB
 	@Override
 	public String imprimir() throws Exception {
 		// TODO Auto-generated method stub
+		this.professor = daoProfessor.find(this.professor.getMatricula());
+		//professor.
 		return null;
 	}
 
@@ -60,7 +62,9 @@ public class ProfessorBean extends ApplicationControllerMB
 	@Override
 	public String salvar() throws Exception {
 		// TODO Auto-generated method stub
-		String result = daoProfessor.insert(professor);
+		String result = daoProfessor.insert(this.professor);
+		System.out.println(result);
+		this.professor = new Professor();
 		return null;
 	}
 

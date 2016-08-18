@@ -2,9 +2,11 @@ package br.com.controlLab.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-//import javax.transaction.Transactional;
 
 import org.hibernate.Session;
+import org.springframework.transaction.annotation.Transactional;
+
+import br.com.controlLab.modelo.Professor;
 
 //@Transactional
 public abstract class DaoGeral<T> implements DaoInterface<T>{	
@@ -16,8 +18,8 @@ public abstract class DaoGeral<T> implements DaoInterface<T>{
 	private final String MSG_ERRO_DEL	 = "Erro ao tentar excluir o registro.";
 	private final String MSG_NOT_FOUND	 = "Registro nÃ£o encontrado.";
 	
-	@PersistenceContext
-	protected EntityManager manager;
+//	@PersistenceContext
+	protected EntityManager manager = new PersistenceUtil().getEntityManager();
 	private Session session;
 //	private final Class<T> classe;
 //	
@@ -76,6 +78,11 @@ public abstract class DaoGeral<T> implements DaoInterface<T>{
 		}catch(Exception e){
 			return "";
 		}
+	}
+
+	public Professor find(String string) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

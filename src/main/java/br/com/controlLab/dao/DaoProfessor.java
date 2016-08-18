@@ -7,15 +7,23 @@ import javax.persistence.Query;
 import br.com.controlLab.modelo.Professor;
 
 public class DaoProfessor extends DaoGeral<Professor> {
-	
-	public DaoProfessor(){
+
+	public DaoProfessor() {
 	}
 
 	@Override
 	public String insert(Professor entity) throws Exception {
 		// TODO Auto-generated method stub
-		manager.persist(entity);
-		return getMSG_SUCESS_SAVE();
+		try {
+			manager.getTransaction().begin();
+			manager.persist(entity);
+			manager.getTransaction().commit();
+			return getMSG_SUCESS_SAVE();
+		} catch (Exception e) {
+			e.printStackTrace();
+			manager.getTransaction().rollback();
+			return getMSG_ERRO_SAVE();
+		}
 	}
 
 	@Override
@@ -34,11 +42,17 @@ public class DaoProfessor extends DaoGeral<Professor> {
 	}
 
 	@Override
+	public Professor find(String string) throws Exception {
+		// TODO Auto-generated method stub
+		Query qry = manager.createNamedQuery(Professor.MATRICULA)
+				.setParameter("matricula", string);
+		return (Professor) qry.getSingleResult();
+	}
+
+	@Override
 	public Professor find(long codigo) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	
 
 }

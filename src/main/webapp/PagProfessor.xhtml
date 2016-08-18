@@ -40,8 +40,10 @@
 					<f:selectItems value="#{professorBean.enumFlAtivos}" var="e" itemValue="#{e}" />
 <!-- 					<f:converter converterId="enumTypeConverter"/> -->
 				</h:selectOneMenu>													
-				
-				<h:commandButton value="Salvar" action="#{professorBean.salvar}"/>
+				<h:panelGroup colunm="3">
+					<h:commandButton value="Salvar" action="#{professorBean.salvar}"/>
+					<h:commandButton value="Consultar" action="#{professorBean.imprimir}"/>
+				</h:panelGroup>
 			</h:panelGrid>
 		</fieldset>
 	</h:form>
