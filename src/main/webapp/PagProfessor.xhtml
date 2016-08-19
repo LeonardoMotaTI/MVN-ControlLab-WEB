@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:p="http://primefaces.org/ui"
-	  xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Cadastro de professores</title>
@@ -14,38 +14,48 @@
 	<h:form>
 		<fieldset>
 			<h:panelGrid columns="2">
-			<h:outputLabel value="Matricula: " for="matricula" />
-				<h:inputText id="matricula" value="#{professorBean.professor.matricula}"/>	
-				
+				<h:outputLabel value="Matricula: " for="matricula" />
+				<h:inputText id="matricula"
+					value="#{professorBean.professor.matricula}" required="true" requiredMessage="Matricula deve ser informada"/>
+
 				<h:outputLabel value="Nome: " for="nome" />
-				<h:inputText id="nome" value="#{professorBean.professor.nome}"/>
-				
+				<h:inputText id="nome" value="#{professorBean.professor.nome}" />
+
 				<h:outputLabel value="Sobre Nome: " for="sobreNome" />
-				<h:inputText id="sobreNome" value="#{professorBean.professor.sobreNome}"/>
-				
+				<h:inputText id="sobreNome"
+					value="#{professorBean.professor.sobreNome}" />
+
 				<h:outputLabel value="Email: " for="email" />
-				<h:inputText id="email" value="#{professorBean.professor.email}"/>
-				
+				<h:inputText id="email" value="#{professorBean.professor.email}" />
+
 				<h:outputLabel value="Telefone: " for="telefone" />
-				<h:inputText id="telefone" value="#{professorBean.professor.telefone}"/>
-				
+				<h:inputText id="telefone"
+					value="#{professorBean.professor.telefone}" />
+
 				<h:outputLabel value="Usuario: " for="usuario" />
-				<h:inputText id="usuario" value="#{professorBean.professor.login}"/>	
-				
+				<h:inputText id="usuario" value="#{professorBean.professor.login}" />
+
 				<h:outputLabel value="Senha: " for="senha" />
-				<h:inputSecret id="senha" value="#{professorBean.professor.senha}"/>		
-				
+				<h:inputSecret id="senha" value="#{professorBean.professor.senha}" />
+
 				<h:outputLabel value="Status Usuario: " for="flAtivo" />
-				<h:selectOneMenu id="flAtivo" value="#{professorBean.professor.ativo}">
-					<f:selectItems value="#{professorBean.enumFlAtivos}" var="e" itemValue="#{e}" />
-<!-- 					<f:converter converterId="enumTypeConverter"/> -->
-				</h:selectOneMenu>													
-				<h:panelGroup colunm="3">
-					<h:commandButton value="Salvar" action="#{professorBean.salvar}"/>
-					<h:commandButton value="Consultar" action="#{professorBean.imprimir}"/>
-				</h:panelGroup>
+				<h:selectOneMenu id="flAtivo"
+					value="#{professorBean.professor.ativo}">
+					<f:selectItems value="#{professorBean.enumFlAtivos}" var="e"
+						itemValue="#{e}" />
+					<!-- <f:converter converterId="enumTypeConverter"/> -->
+				</h:selectOneMenu>
 			</h:panelGrid>
 		</fieldset>
+		<h:form>
+			<h:panelGrid columns="3">
+				<h:commandButton value="Salvar" id="salvar"
+					action="#{professorBean.salvar}" type="submit" />
+				<h:commandButton value="Consultar" id="consultar"
+					action="#{professorBean.imprimir}" type="submit" />
+				<h:commandButton value="Limpar" id="limpar" type="submit" />
+			</h:panelGrid>
+		</h:form>
 	</h:form>
 
 </body>
